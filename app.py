@@ -1,7 +1,13 @@
 """
 Flask Web Application for Resume Shortlisting Tool
 """
+from flask import Flask
+import pickle
 
+app = Flask(__name__)
+
+# ✅ Load model ONCE at startup
+model = pickle.load(open("model.pkl", "rb"))
 from flask import Flask, render_template, request, jsonify, flash, redirect, url_for
 import os
 from werkzeug.utils import secure_filename
@@ -234,3 +240,4 @@ if __name__ == '__main__':
     print("Starting Resume Shortlisting Tool...")
     print("Open http://localhost:5000 in your browser")
     app.run(debug=True, host='0.0.0.0', port=5000)
+
