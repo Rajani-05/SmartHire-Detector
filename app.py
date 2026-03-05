@@ -1,7 +1,7 @@
 """
 Flask Web Application for Resume Shortlisting Tool
 """
-
+import os
 from flask import Flask, render_template, request, jsonify, flash, redirect, url_for
 import os
 from werkzeug.utils import secure_filename
@@ -233,6 +233,8 @@ def internal_error(error):
 if __name__ == '__main__':
     print("Starting Resume Shortlisting Tool...")
     print("Open http://localhost:5000 in your browser")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    port=int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
+
 
 
